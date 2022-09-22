@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-@Entity
+@Entity   //DB 테이블을 만드는 어노테이션
 public class Board {
 	@Id @GeneratedValue
 	private Long seq;          //글번호

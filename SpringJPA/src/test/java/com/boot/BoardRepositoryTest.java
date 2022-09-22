@@ -42,16 +42,16 @@ public class BoardRepositoryTest {
 	}*/
 	
 	//게시글 삭제
-	/*@Test
+	@Test
 	public void testDeleteBoard() {
 		
 		log.info("2번 게시글 삭제");
 		
-		boardRepo.deleteById(2L);
-	}*/
+		boardRepo.deleteById(3L);
+	}
 	
 	//게시글 수정
-	@Test
+	/*@Test
 	public void testUpdateBoard() {
 		log.info("1번 게시글 조회");
 		Board board = boardRepo.findById(1L).get();
@@ -60,7 +60,7 @@ public class BoardRepositoryTest {
 		board.setTitle("제목을 수정합니다.");
 		//수정후 저장
 		boardRepo.save(board);
-	}
+	}*/
 	
 	//게시글 목록 보기
 	@Test
