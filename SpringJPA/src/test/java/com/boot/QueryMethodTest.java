@@ -22,7 +22,7 @@ public class QueryMethodTest {
 	
 	//데이터 200개 저장
 	//@BeforeEach은 테스트 메소드가 실행되기 전에 동작
-	@BeforeEach
+	/*@BeforeEach
 	public void dataPrepare() {
 		for(int i=1; i<=200; i++) {
 			Board board = new Board();
@@ -34,7 +34,7 @@ public class QueryMethodTest {
 			
 			boardRepo.save(board);
 		}
-	}
+	}*/
 	
 	/*@Test
 	public void testFindByTitle() {
@@ -45,9 +45,31 @@ public class QueryMethodTest {
 		}
 	}*/
 	
-	@Test
+	/*@Test
 	public void testFindByContentContaining() {
 		List<Board> boardList = boardRepo.findByContentContaining("17");
+		
+		log.info("검색 결과");
+		for(Board board : boardList) {
+			log.info("--->" + board.toString());
+		}
+	}*/
+	
+	/*@Test
+	public void testFindByTitleContainingOrContentContaining() {
+		List<Board> boardList =
+				boardRepo.findByTitleContainingOrContentContaining("17", "18");
+		
+		log.info("검색 결과");
+		for(Board board : boardList) {
+			log.info("--->" + board.toString());
+		}
+	}*/
+	
+	@Test
+	public void testFindByTitleContainingOrderBySeqDesc() {
+		List<Board> boardList =
+				boardRepo.findByTitleContainingOrderBySeqDesc("18");
 		
 		log.info("검색 결과");
 		for(Board board : boardList) {
