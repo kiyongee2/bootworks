@@ -9,3 +9,10 @@ h2{padding-top: 20px;}
 .tbl_list, th, td{border: 1px solid #ccc; border-collapse: collapse;}
 .tbl_list th, td{padding: 10px;}
 .tbl_list thead{background: #eee;}
+
+/* insertBoard Ω∫≈∏¿œ */
+.tbl_reg{width: 700px; margin: 0 auto;}
+.tbl_reg, td{border: 1px solid #ccc; border-collapse: collapse;}
+.tbl_reg td{padding: 10px;}
+.tbl_reg input{width: 580px; height: 25px;}
+.tbl_reg textarea{width: 580px}
