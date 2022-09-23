@@ -12,8 +12,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 @ToString
-@Getter
 @Setter
+@Getter
 @Entity   //DB 테이블을 만드는 어노테이션
 public class Board {
 	@Id @GeneratedValue

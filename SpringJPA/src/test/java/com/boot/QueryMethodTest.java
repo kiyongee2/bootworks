@@ -38,7 +38,7 @@ public class QueryMethodTest {
 	
 	/*@Test
 	public void testFindByTitle() {
-		List<Board> boardList = boardRepo.findByTitle("테스트 제목 10");
+		List<Board> boardList = boardRepo.findByTitle("테스트 제목 20");
 		log.info("검색 결과");
 		for(Board board : boardList) {
 			log.info("--->" + board.toString());
@@ -58,7 +58,7 @@ public class QueryMethodTest {
 	/*@Test
 	public void testFindByTitleContainingOrContentContaining() {
 		List<Board> boardList =
-				boardRepo.findByTitleContainingOrContentContaining("17", "18");
+				boardRepo.findByTitleContainingOrContentContaining("17", "17");
 		
 		log.info("검색 결과");
 		for(Board board : boardList) {
@@ -66,10 +66,11 @@ public class QueryMethodTest {
 		}
 	}*/
 	
+	//글 제목에 특정 단어가 포함된 글 목록을 내림차순으로 조회
 	@Test
 	public void testFindByTitleContainingOrderBySeqDesc() {
 		List<Board> boardList =
-				boardRepo.findByTitleContainingOrderBySeqDesc("18");
+				boardRepo.findByTitleContainingOrderBySeqDesc("테스트 제목 10");
 		
 		log.info("검색 결과");
 		for(Board board : boardList) {

@@ -20,4 +20,9 @@ public interface BoardService {
 	
 	//게시글 수정
 	void updateBoard(Board board);
+	
+	//조회수 카운트
+	void updateCount(Long seq);
 }
+
+

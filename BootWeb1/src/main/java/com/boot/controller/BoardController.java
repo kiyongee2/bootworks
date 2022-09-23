@@ -16,6 +16,11 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
+	
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
 
 	@GetMapping("/hello")
 	public void hello() {  //hello.jsp
@@ -46,7 +51,8 @@ public class BoardController {
 	//글 상세 보기
 	@GetMapping("/getBoard")
 	public String getBoard(Long seq, Model model) {
-		Board board = service.getBoard(seq);
+		service.updateCount(seq);  //조회수 증가
+		Board board = service.getBoard(seq); //상세 처리
 		
 		model.addAttribute("board", board); //model - "board" 보냄
 		return "getBoard";

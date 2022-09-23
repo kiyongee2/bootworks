@@ -2,7 +2,10 @@ package com.boot.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.boot.domain.Board;
@@ -18,7 +21,8 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<Board> getBoardList() {
 		//findAll() - select * from board가 내장됨
-		return boardRepo.findAll();
+		//return boardRepo.findAll(); //오름차순
+		return boardRepo.findAll(Sort.by(Sort.Direction.DESC, "seq"));//내림차순
 	}
 
 	//새글 등록
@@ -43,12 +47,18 @@ public class BoardServiceImpl implements BoardService{
 
 	//글 수정
 	@Override
-	public void updateBoard(Board board) {
-		Board findBoard = boardRepo.findById(board.getSeq()).get();
+	public void updateBoard(Board board) { //파라미터에서 커맨드 객체(get/set 작동)
+		/*Board findBoard = boardRepo.findById(board.getSeq()).get();
 		findBoard.setTitle(board.getTitle()); //입력 폼의 제목을 세팅
-		findBoard.setContent(board.getContent()); //입력 폼의 내용을 세팅
+		findBoard.setContent(board.getContent()); //입력 폼의 내용을 세팅*/
 		
-		boardRepo.save(findBoard);  //다시 저장(수정)
+		boardRepo.save(board);  //다시 저장(수정)
+	}
+
+	@Transactional  //트랜잭션 처리
+	@Override
+	public void updateCount(Long seq) {
+		boardRepo.updateCount(seq);
 	}
 
 }
