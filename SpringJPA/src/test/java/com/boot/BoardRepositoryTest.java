@@ -21,17 +21,17 @@ public class BoardRepositoryTest {
 	
 	
 	//게시글 등록
-	/*@Test
+	@Test
 	public void testInsertBoard() {
 		Board board = new Board();
 		board.setTitle("두 번째 게시글");
-		board.setWriter("테스터");
+		//board.setWriter("테스터");
 		board.setContent("등록이 잘 되나요?");
 		board.setCreateDate(new Date());
 		board.setCnt(0L);
 		
 		boardRepo.save(board);  //insert 기능(db에 저장)
-	}*/
+	}
 	
 	//게시글 1개 보기
 	/*@Test
@@ -42,13 +42,13 @@ public class BoardRepositoryTest {
 	}*/
 	
 	//게시글 삭제
-	@Test
+	/*@Test
 	public void testDeleteBoard() {
 		
 		log.info("2번 게시글 삭제");
 		
 		boardRepo.deleteById(3L);
-	}
+	}*/
 	
 	//게시글 수정
 	/*@Test
@@ -63,13 +63,13 @@ public class BoardRepositoryTest {
 	}*/
 	
 	//게시글 목록 보기
-	@Test
+	/*@Test
 	public void testBoardAll() {
 		List<Board> boardList = (List<Board>) boardRepo.findAll();
 		
 		for(Board board : boardList)
 			log.info(board.toString());
-	}
+	}*/
 }
 
 
