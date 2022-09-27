@@ -1,5 +1,7 @@
 package com.boot;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -53,7 +55,7 @@ public class ReleationMappingTest {
 		}
 	}*/
 	
-	@Test
+	/*@Test
 	public void testManyToOneSelect() {
 		Board board = boardRepo.findById(5L).get();
 		
@@ -62,5 +64,26 @@ public class ReleationMappingTest {
 		System.out.println("작성자\t: " + board.getMember().getName());
 		System.out.println("내용\t: " + board.getContent());
 		System.out.println("권한\t: " + board.getMember().getRole());
+	}*/
+	
+	@Test
+	public void testTwoWayMapping() {
+		//member1 회원 조회
+		Member member = memberRepo.findById("member2").get();
+		
+		System.out.println("========================================");
+		System.out.println(member.getName() + "가(이) 저장한 게시글 목록");
+		System.out.println("========================================");
+		
+		List<Board> list = member.getBoardList();
+		for(Board board : list)
+			System.out.println(board.toString());
+		
 	}
 }
+
+
+
+
+
+

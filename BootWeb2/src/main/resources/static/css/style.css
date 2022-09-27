@@ -6,6 +6,9 @@ h2{padding-top: 20px;}
 
 /* index 스타일 */
 img{border-radius: 5px;}
+.exception{text-align: left; border-collapse: collapse;}
+.exception th{background: pink; padding: 10px;}
+.exception{margin-top: 10px;}
 
 /* getBoardList 스타일 */
 .tbl_list{width: 700px; margin: 0 auto; text-align: center;}
