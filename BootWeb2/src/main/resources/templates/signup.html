@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
-	<title>메인 페이지</title>
+	<title>회원 가입</title>
 	<link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 	<div th:replace="menu.html::nav"></div>
 	<div id="container">
-		<h2>로그인</h2>
-		<form th:action="@{login}" method="post">
+		<h2>회원 가입</h2>
+		<form th:action="@{/signup}" method="post">
 			<table class="tbl_login">
 				<tbody>
 					<tr>
@@ -21,8 +21,17 @@
 						<td><input type="password" name="password"></td>
 					</tr>
 					<tr>
+						<td th:text="비밀번호확인">
+						<td><input type="password" name="password_confirm"></td>
+					</tr>
+					<tr>
+						<td th:text="이름">
+						<td><input type="text" name="name"></td>
+					</tr>
+					<tr>
 						<td colspan="2" align="center">
-							<button type="submit">로그인</button>
+							<button type="submit">등록</button>
+							<button type="reset">취소</button>
 						</td>
 					</tr>
 				</tbody>

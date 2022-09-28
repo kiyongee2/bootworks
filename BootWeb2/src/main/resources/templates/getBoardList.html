@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+	<div th:replace="menu.html::nav"></div>
 	<div id="container">
 		<h2>게시글 목록</h2>
 		<h3><font color="red" th:text="${session['member'].name}">

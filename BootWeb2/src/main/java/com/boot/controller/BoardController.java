@@ -27,6 +27,11 @@ public class BoardController {
 	public Member setMember() {
 		return new Member();
 	}
+	
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
 
 	//목록 보기
 	@GetMapping("/getBoardList")

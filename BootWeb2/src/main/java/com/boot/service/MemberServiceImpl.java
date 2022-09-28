@@ -27,4 +27,11 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 
+	//회원 가입
+	@Override
+	public void signup(Member member) {
+		member.setRole("ROLE_USER");  //권한 설정
+		memberRepo.save(member);
+	}
+
 }

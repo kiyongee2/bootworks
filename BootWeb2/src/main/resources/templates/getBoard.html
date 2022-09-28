@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+	<div th:replace="menu.html::nav"></div>
 	<div id="container">
 		<h2>글 상세 보기</h2>
 		<form th:action="@{/updateBoard}" method="post">
