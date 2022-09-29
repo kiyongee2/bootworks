@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>상세 보기</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+	<div id="container">
+		<h2>글 상세 보기</h2>
+		<form th:action="@{/board/updateBoard}" method="post">
+			<table class="tbl_view">
+				<tbody>
+					<tr>
+						<td th:text="제목"></td>
+						<td><input type="text" name="title" th:value="${board.title}"></td>
+					</tr>
+					<tr>
+						<td th:text="작성자"></td>
+						<td th:text="${board.member.name}" class="left"></td>
+					</tr>
+				    <tr>
+				    	<td th:text="내용"></td>
+				    	<td>
+				    		<textarea name="content" rows="10" cols="50"
+				    				th:text="${board.content}"></textarea>
+				    	</td>
+				    </tr>
+				    <tr>
+						<td th:text="작성일"></td>
+						<td th:text="${board.createDate}" class="left"></td>
+					</tr>
+				    <tr>
+						<td th:text="조회수"></td>
+						<td th:text="${board.cnt}" class="left"></td>
+					</tr>
+				    <tr>
+						<td colspan="2">
+							<button type="submit">글수정</button>
+							<button type="button">글삭제</button>
+							<a th:href="@{/board/getBoardList}">
+								<button type="button">글목록</button></a>
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</form>
+	</div>
+</body>
+</html>
