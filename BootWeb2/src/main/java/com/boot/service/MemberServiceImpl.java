@@ -52,4 +52,10 @@ public class MemberServiceImpl implements MemberService{
 		memberRepo.save(member);  //가입과 수정 메소드가 같음
 	}
 
+	//ID 중복 확인
+	@Override
+	public int checkID(String id) {
+		return memberRepo.checkID(id);
+	}
+
 }

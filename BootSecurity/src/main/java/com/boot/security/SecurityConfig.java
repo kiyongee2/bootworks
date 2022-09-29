@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	} //configure() 끝
 	
 	//비밀번호 암호화 - PasswordEncoder 객체를 리턴하는 passwordEncoder() 추가
-	@Bean
+	@Bean  //Method를 통해서 반환되는 객체를 Bean으로 만드는 것(특정 용도)
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
