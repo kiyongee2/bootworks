@@ -2,21 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 <nav>
-	<th:block th:if="${session['member'].id == null}">
+	<th:block th:if="${session['member'].id eq null}">
 	<ul>
 		<li><a th:href="@{/}">Home</a></li>
 		<li><a th:href="@{/signup}">회원가입</a></li>
 		<li><a th:href="@{/login}">로그인</a></li>
-		<li><a th:href="@{/}">회원목록</a></li>
 		<li><a th:href="@{/getBoardList}">게시판</a></li>
 	</ul>
 	</th:block>
-	<th:block th:if="${session['member'].id != null}">
+	<th:block th:if="${session['member'].id ne null}">
 	<ul>
 		<li><a th:href="@{/}">Home</a></li>
-		<li><a th:href="@{/}">나의 정보</a></li>
-		<li><a th:href="@{/logout}">로그아웃</a></li>
-		<li><a th:href="@{/}">회원목록</a></li>
+		<li><a th:href="@{/memberView(id=${session['member'].id})}">나의 정보</a></li>
+		<li><a th:href="@{/logout}">
+			(<span th:text="${session['member'].name}"></span>님)로그아웃</a></li>
 		<li><a th:href="@{/getBoardList}">게시판</a></li>
 	</ul>
 	</th:block>
