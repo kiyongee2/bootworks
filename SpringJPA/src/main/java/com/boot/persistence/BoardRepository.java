@@ -12,7 +12,7 @@ import com.boot.domain.Board;
 
 //CrudRepository<엔티티, 기본키 필드의 자료형>
 public interface BoardRepository extends JpaRepository<Board, Long>{
-	
+
 	//쿼리 메소드 - 글 제목을 검색
 	List<Board> findByTitle(String searchKeyword);
 	

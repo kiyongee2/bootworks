@@ -24,7 +24,7 @@ public class BoardRepositoryTest {
 	private PasswordEncoder pwencoder;
 	
 	//회원 및 게시글 등록
-	/*@Test
+	@Test
 	public void testInsert2() {
 		//회원
 		Member member1 = new Member();
@@ -37,7 +37,7 @@ public class BoardRepositoryTest {
 		
 		//관리자
 		Member member2 = new Member();
-		member2.setId("admin");
+		member2.setId("admin2");
 		member2.setPassword(pwencoder.encode("admin12"));  //비밀번호 암호화
 		member2.setName("관리자");
 		member2.setRole(Role.ROLE_ADMIN);
@@ -61,7 +61,7 @@ public class BoardRepositoryTest {
 			boardRepo.save(board);
 		}
 		
-	}*/
+	}
 	
 	
 	

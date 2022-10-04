@@ -3,6 +3,7 @@ package com.boot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,19 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.boot.config.SecurityUser;
 import com.boot.domain.Board;
+import com.boot.domain.Search;
 import com.boot.service.BoardService;
 
 @RequestMapping("/board/")
 @Controller
 public class BoardController {
-
+	
 	@Autowired
 	private BoardService service;
 	
 	//게시글 목록
 	@GetMapping("/getBoardList")
-	public String getBoardList(Model model) {
-		List<Board> boardList = service.getBoardList();
+	public String getBoardList(Search search, Model model) {
+		//초기값 null 처리
+		if(search.getSearchCondition()==null) {
+			search.setSearchCondition("TITLE");  //제목으로 설정
+		}
+		if(search.getSearchKeyword()==null) {
+			search.setSearchKeyword("");  //문자 초기화
+		}
+		//List<Board> boardList = service.getBoardList();
+		Page<Board> boardList = service.getBoardList(search);
 		model.addAttribute("boardList", boardList);
 		return "board/getBoardList"; //board/getBoardList.html
 	}
@@ -32,7 +42,8 @@ public class BoardController {
 	//상세 보기
 	@GetMapping("/getBoard")
 	public String getBoard(Long seq, Model model) {
-		Board board = service.getBoard(seq);
+		service.updateCount(seq);  //조회수
+		Board board = service.getBoard(seq); //상세 보기
 		model.addAttribute("board", board);
 		return "board/getBoard"; //getBoard.html
 	}
@@ -54,6 +65,13 @@ public class BoardController {
 	@PostMapping("/updateBoard")
 	public String updateBoard(Board board) {
 		service.updateBoard(board);
+		return "redirect:getBoardList";
+	}
+	
+	//글 삭제
+	@GetMapping("/deleteBoard")
+	public String deleteBoard(Board board) {
+		service.deleteBoard(board);
 		return "redirect:getBoardList";
 	}
 }

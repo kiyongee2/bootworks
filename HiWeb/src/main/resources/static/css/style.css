@@ -17,11 +17,14 @@ img{border-radius: 5px;}
 .exception{margin-top: 10px;}
 
 /* getBoardList 스타일 */
-.tbl_list{width: 700px; margin: 0 auto; text-align: center;}
+.tbl_list{width: 700px; margin: 20px auto; text-align: center;}
 .tbl_list, th, td{border: 1px solid #ccc; border-collapse: collapse;}
 .tbl_list th, td{padding: 10px;}
 .tbl_list thead{background: #eee;}
 /* .name{color: #f00;} */
+hr{margin: 20px;}
+form select{height: 30px;}
+form button{padding: 5px 10px;}
 
 /* insertBoard 스타일 */
 .tbl_reg{width: 700px; margin: 0 auto;}

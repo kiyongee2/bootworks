@@ -20,7 +20,9 @@ public class SecurityController {  //LoginController 역할
 	
 	//로그아웃
 	@GetMapping("/system/logout")
-	public void logout() {}
+	public String logout() {
+		return "redirect:/";
+	}
 	
 	//회원 가입 폼 요청
 	@GetMapping("/system/signup")

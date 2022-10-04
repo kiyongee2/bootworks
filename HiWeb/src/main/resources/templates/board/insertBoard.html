@@ -10,6 +10,7 @@
 	<div id="container">
 		<h2>글 상세 보기</h2>
 		<form th:action="@{/board/insertBoard}" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<table class="tbl_reg">
 				<tbody>
 					<tr>

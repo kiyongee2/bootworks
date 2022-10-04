@@ -9,6 +9,7 @@
 	<div id="container">
 		<h2>회원 가입</h2>
 		<form th:action="@{/system/signup}" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<table class="tbl_signup">
 				<tr>
 					<td th:text="아이디">

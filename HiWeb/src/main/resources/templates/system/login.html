@@ -8,7 +8,7 @@
 <body>
 	<div id="container">
 		<h2>로그인</h2>
-		<form action="" method="post">
+		<form th:action="@{/system/login}" method="post">
 			<table class="tbl_login">
 				<tr>
 					<td th:text="아이디">
@@ -24,7 +24,7 @@
 					</td>
 				</tr>
 			</table>
-			<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> -->
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</div>
 </body>
