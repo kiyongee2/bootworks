@@ -12,7 +12,7 @@ public class SecurityUser extends User{
 	public SecurityUser(Member member) {
 		//super(아이디, 비밀번호, 권한)
 		//db에 비밀번호 암호화하여 저장하면 {noop} 제거함
-		super(member.getId(), "{noop}" + member.getPassword(),
+		super(member.getId(), member.getPassword(),
 			AuthorityUtils.createAuthorityList(member.getRole().toString()));
 		this.member = member;
 	}

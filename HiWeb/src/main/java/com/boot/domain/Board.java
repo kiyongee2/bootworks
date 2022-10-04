@@ -20,7 +20,9 @@ import lombok.ToString;
 public class Board {
 	@Id
 	@GeneratedValue
+	@Column(name="BOARD_ID")
 	private Long seq;
+	
 	private String title;
 	private String content;
 	
