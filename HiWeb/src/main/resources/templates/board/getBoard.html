@@ -9,6 +9,8 @@
 	<div id="container">
 		<h2>글 상세 보기</h2>
 		<form th:action="@{/board/updateBoard}" method="post">
+			<!-- 수정시에 기본키 필드 히든으로 보냄  -->
+			<input type="hidden" name="seq" th:value="${board.seq}">
 			<table class="tbl_view">
 				<tbody>
 					<tr>

@@ -10,4 +10,8 @@ public interface BoardService {
 	
 	Board getBoard(Long seq);   //상세 보기
 	
+	void insertBoard(Board board);  //글쓰기
+	
+	void updateBoard(Board board);  //글수정
+	
 }

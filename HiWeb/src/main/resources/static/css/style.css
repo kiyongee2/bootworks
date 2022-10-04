@@ -21,6 +21,7 @@ img{border-radius: 5px;}
 .tbl_list, th, td{border: 1px solid #ccc; border-collapse: collapse;}
 .tbl_list th, td{padding: 10px;}
 .tbl_list thead{background: #eee;}
+/* .name{color: #f00;} */
 
 /* insertBoard 스타일 */
 .tbl_reg{width: 700px; margin: 0 auto;}
@@ -28,6 +29,7 @@ img{border-radius: 5px;}
 .tbl_reg td{padding: 10px;}
 .tbl_reg input{width: 580px; height: 25px;}
 .tbl_reg textarea{width: 580px}
+.tbl_reg .left{text-align: left; padding-left: 15px;}
 
 /* getBoard 스타일 */
 .tbl_view{width: 700px; margin: 0 auto;}
@@ -38,11 +40,13 @@ img{border-radius: 5px;}
 .tbl_view .left{text-align: left; padding-left: 15px;}
 
 /* login 스타일 */
-.tbl_login{width: 400px; margin: 0 auto;}
-.tbl_login, td{border: 1px solid #ccc; border-collapse: collapse;}
-.tbl_login td{padding: 10px;}
-.tbl_login input{height: 25px;}
-.error{color: #f00;}
+.tbl_signup, .tbl_login{width: 400px; margin: 0 auto;}
+.tbl_signup, .tbl_login, td{border: 1px solid #ccc; border-collapse: collapse;}
+.tbl_signup, .tbl_login td{padding: 10px;}
+.tbl_signup, input{height: 25px;} .tbl_login input{height: 25px;}
+.tbl_login .error{color: #f00;}
+
+
 
 
 

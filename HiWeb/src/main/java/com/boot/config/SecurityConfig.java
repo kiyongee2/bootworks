@@ -31,7 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		//권한
 		security.authorizeRequests()
-		        .antMatchers("/").permitAll();
+		        .antMatchers("/", "/system/**").permitAll()
+		        .antMatchers("/board/**").authenticated()
+				.antMatchers("/admin/**").hasRole("ADMIN");
+		//접근 권한 없음
+		security.exceptionHandling()
+		        .accessDeniedPage("/system/accessDenied");
 	}
 	
 	//비밀번호 암호화 객체 반환해줌

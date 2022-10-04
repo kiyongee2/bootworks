@@ -28,4 +28,16 @@ public class BoardServiceImpl implements BoardService{
 		return boardRepo.findById(seq).get();
 	}
 
+	//글 쓰기
+	@Override
+	public void insertBoard(Board board) {
+		boardRepo.save(board);
+	}
+
+	//글 수정
+	@Override
+	public void updateBoard(Board board) {
+		boardRepo.save(board);
+	}
+
 }
