@@ -3,14 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<meta charset="utf-8">
-	<title>상세 보기</title>
-	<link rel="stylesheet" href="/static/css/style.css">
+	<title>글쓰기</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div id="container">
-		<h2>글 상세 보기</h2>
-		<form th:action="@{/board/insertBoard}" method="post">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		<h2>글 쓰기</h2>
+		<form th:action="@{/board/insertBoard}" method="post" encType="multipart/form-data">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<table class="tbl_reg">
 				<tbody>
 					<tr>
@@ -26,6 +26,10 @@
 				    	<td>
 				    		<textarea name="content" rows="10" cols="50"></textarea>
 				    	</td>
+				    </tr>
+				    <tr>
+				    	<td th:text="파일업로드"></td>
+				    	<td><input type="file" name="uploadFile"></td>
 				    </tr>
 				    <tr>
 						<td colspan="2">

@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//사용자 정의 userDetailsService 객체 사용함
 		security.userDetailsService(userDetailsService);
 		
-		//security.csrf().disable();  //csrf 비활성화
+		//security.csrf().disable();  //csrf 활성화
 		//로그인 후 게시글 목록 페이지로 이동(인증)
 		security.formLogin().loginPage("/system/login")
 				.defaultSuccessUrl("/board/getBoardList", true);

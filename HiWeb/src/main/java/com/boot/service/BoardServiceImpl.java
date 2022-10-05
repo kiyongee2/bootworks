@@ -43,7 +43,7 @@ public class BoardServiceImpl implements BoardService{
 		}
 		
 		//페이징 처리
-		Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "seq");
+		Pageable pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "seq");
 		return boardRepo.findAll(builder, pageable);
 	}
 
