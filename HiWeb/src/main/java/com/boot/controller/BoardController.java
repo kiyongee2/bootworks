@@ -2,6 +2,7 @@ package com.boot.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,7 +61,7 @@ public class BoardController {
 	
 	//글쓰기 처리
 	@PostMapping("/insertBoard")
-	public String insertBoard(Board board, @RequestParam MultipartFile[] uploadFile,
+	public String insertBoard(Board board, @RequestParam MultipartFile[] uploadFile, Model model,
 			@AuthenticationPrincipal SecurityUser principal) throws IllegalStateException, IOException {
 		//파일 업로드
 		//MultipartFile[]를 파라미터로 객체 사용
@@ -76,7 +77,6 @@ public class BoardController {
 				file.transferTo(newFileName);
 			}
 		}
-		
 		//글쓰기
 		board.setMember(principal.getMember());
 		service.insertBoard(board);
