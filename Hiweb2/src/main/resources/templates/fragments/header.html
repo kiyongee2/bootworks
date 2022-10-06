@@ -8,21 +8,21 @@
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/">HiWeb</a>
+        <a class="navbar-brand" th:href="@{/}">HiWeb</a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/member/login">로그인</a>
+                    <a class="nav-link" th:href="@{/member/login}">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/member/logout">로그아웃</a>
+                    <a class="nav-link" th:href="@{/member/logout}">로그아웃</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/member/userInfo">나의 정보</a>
+                    <a class="nav-link" th:href="@{/member/userInfo}">나의 정보</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/board/getBoardList">게시판</a>
+                    <a class="nav-link" href="@{/board/getBoardList}">게시판</a>
                 </li>
             </ul>
         </div>
