@@ -16,12 +16,16 @@
 			<tbody>
 				<tr th:each="board : ${boardList}">
 					<td th:text="${board.seq}"></td>
-					<td th:text="${board.title}"></td>
+					<td><a th:href="@{/board/getBoard(seq=${board.seq})}"  
+					       th:text="${board.title}"></a></td>
 					<td th:text="${board.member.name}"></td>
 					<td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 					<td th:text="${board.cnt}"></td>
 				</tr>
 			</tbody>
 		</table>
+		<div align="right">
+			<a th:href="@{/board/insertBoard}" class="btn btn-success">글쓰기</a>
+		</div>
 	</div>
 </html>
