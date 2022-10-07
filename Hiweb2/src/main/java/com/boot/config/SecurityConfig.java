@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.invalidateHttpSession(true)
 			.logoutSuccessUrl("/");
 		
+		//http.csrf().disable(); 비활성화 사용안함
 	}
 
 	//비밀번호 암호화 객체 반환해줌

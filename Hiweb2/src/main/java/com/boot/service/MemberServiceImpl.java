@@ -32,4 +32,20 @@ public class MemberServiceImpl implements MemberService{
 		return memberRepo.findById(userid).get();
 	}
 
+	//회원 정보 수정
+	@Override
+	public void update(Member member) {
+		//수정시에도 비밀번호 암호화, 권한, 계정은 필수 저장
+		String encPW = pwencoder.encode(member.getPassword());
+		member.setPassword(encPW);
+		member.setRole(Role.ROLE_MEMBER); //권한 설정
+		member.setEnabled(true);   //계정 있음
+		memberRepo.save(member);
+	}
+
+	//회원 정보 삭제
+	@Override
+	public void delete(Member member) {
+		memberRepo.delete(member);
+	}
 }
