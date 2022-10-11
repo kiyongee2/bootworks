@@ -7,6 +7,10 @@
 	
 	<div layout:fragment="content" class="content">
 		<h2>로그인</h2>
+		<div class="error">
+			<!-- <span th:text="${error}"></span> -->
+			<span>[[${error}]]</span>
+		</div>
 		<form th:action="@{/member/login}" method="post">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="form-group">
