@@ -16,13 +16,16 @@
 			<tbody>
 				<tr th:each="dto : ${result.dtoList}">
 					<td>[[${dto.gno}]]</td>
-					<td>[[${dto.title}]]</td>
+					<td>
+						<a th:href="@{/guestbook/read(gno=${dto.gno}, 
+							page=${result.page})}">[[${dto.title}]]</a>
+					</td>
 					<td>[[${dto.writer}]]</td>
 					<td>[[${dto.regDate}]]</td>
 				</tr>
 			</tbody>
 		</table>
-		<!-- 페이지 처리 -->
+		<!-- 페이지 처리 시작 -->
 		<ul class="pagination justify-content-center align-items-center">
 			<!-- previous -->
 			<li class="page-item" th:if="${result.prev}">
@@ -44,5 +47,59 @@
 					class="page-link">Next</a>
 			</li>
 		</ul>
+		<!-- 페이지 처리 끝-->
+		<div align="right">
+			<a th:href="@{/guestbook/register}" class="btn btn-primary">글쓰기</a>
+		</div>
+		<!-- 모달 창 -->
+		<div class="modal" tabindex="-1">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Modal title</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p>게시글이 등록되었습니다.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- 모달 창 끝 -->
+		
+		<!-- 자바 스크립트 영역 -->
+		<script th:inline="javascript">
+			$(document).ready(function(){
+				let msg = [[${msg}]]
+				
+				//gno(글번호)가 있으면 모달 창이 열림
+				if(msg){
+					$(".modal").modal('show');
+				}
+				
+				checkModal(msg);  //글 번호 등록 함수 호출
+				
+				function checkModal(msg){
+					if(parseInt(msg) > 0){
+						$(".modal-body").html("게시글 " + parseInt(msg) + "번이 등록되었습니다.");
+					}
+				}
+				
+				//모달 창 닫기
+				$(".close").click(function(){
+					$(".modal").modal('hide');
+				});
+			});
+		
+		</script>
+		
 	</div>
 </html>
+
+
+
+
+

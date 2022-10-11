@@ -71,6 +71,20 @@ public class BoardController {
 		boardService.insertBoard(board);
 		return "redirect:getBoardList";
 	}
+	
+	//글 수정
+	@PostMapping("/updateBoard")
+	public String updateBoard(Board board) {
+		boardService.updateBoard(board);
+		return "redirect:getBoardList";
+	}
+	
+	//글 삭제
+	@GetMapping("/deleteBoard")
+	public String deleteBoard(Board board) {
+		boardService.deleteBoard(board);
+		return "redirect:getBoardList";
+	}
 }
 
 

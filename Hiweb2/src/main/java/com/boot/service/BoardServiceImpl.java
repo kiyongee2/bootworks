@@ -42,4 +42,15 @@ public class BoardServiceImpl implements BoardService{
 		boardRepo.updateCount(seq);
 	}
 
+	//글 수정
+	@Override
+	public void updateBoard(Board board) {
+		boardRepo.save(board);
+	}
+
+	@Override
+	public void deleteBoard(Board board) {
+		boardRepo.delete(board);
+	}
+
 }

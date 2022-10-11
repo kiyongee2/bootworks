@@ -25,6 +25,7 @@ public class Board {
 	private Long seq;
 	
 	private String title;
+	
 	private String content;
 	
 	@Column(updatable = false,
