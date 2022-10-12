@@ -10,4 +10,7 @@ public class MainController {
 	public String main() {
 		return "main";
 	}
+	
+	@GetMapping("/admin/adminPage")
+	public void adminPage() {}
 }

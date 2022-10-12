@@ -28,6 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.logoutSuccessUrl("/");
 		
 		//http.csrf().disable(); 비활성화 사용안함
+		//권한 설정
+		http.authorizeRequests()
+			.antMatchers("/", "/member/**").permitAll()   //인증되지 않은 모든 사용자 접근
+			.antMatchers("/admin/**").hasRole("ADMIN");   //ADMIN 권한을 가진 사용자만 접근
 	}
 
 	//비밀번호 암호화 객체 반환해줌
