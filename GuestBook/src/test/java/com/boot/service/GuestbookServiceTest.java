@@ -29,7 +29,7 @@ public class GuestbookServiceTest {
 	}*/
 	
 	//게시글 목록 보기
-	@Test
+	/*@Test
 	public void testList() {
 		//페이지 요청
 		PageRequestDto pageRequestDto = PageRequestDto.builder()
@@ -49,6 +49,23 @@ public class GuestbookServiceTest {
 		
 		System.out.println("========================================");
 		resultDto.getPageList().forEach(i -> System.out.print(i + " "));
+	}*/
+	
+	@Test
+	public void testSearch() {
+		PageRequestDto pageRequestDto = PageRequestDto.builder()
+				.page(1)
+				.size(10)
+				.type("t")
+				.keyword("한글")
+				.build();
+		
+		PageResultDto<GuestbookDto, Guestbook> resultDto = 
+				service.getList(pageRequestDto);
+		
+		for(GuestbookDto guestbookDto : resultDto.getDtoList()) {
+			System.out.println(guestbookDto);
+		}
 		
 	}
 }
