@@ -64,7 +64,7 @@ public class BoardRepositoryTest {
 	}*/
 	
 	//게시글, 회원(작성자), 댓글 수 조회(목록)
-	@Test
+	/*@Test
 	public void testWithReplyCount() {
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
 		Page<Object[]> result = boardRepo.getBoardWithReplyCount(pageable);
@@ -74,7 +74,7 @@ public class BoardRepositoryTest {
 			Object[] arr = (Object[])row;
 			System.out.println(Arrays.toString(arr));
 		});
-	}
+	}*/
 	
 	//특정 게시물 조회
 	/*@Test
@@ -85,6 +85,21 @@ public class BoardRepositoryTest {
 		System.out.println(Arrays.toString(arr));
 	}*/
 	
+	//검색 테스트
+	/*@Test
+	public void testSearch1() {
+		boardRepo.search1();
+	}*/
+	
+	//검색 처리
+	@Test
+	public void testSearchPage() {
+		Pageable pageable = 
+				PageRequest.of(0, 10, Sort.by("bno").descending());
+		
+		//제목에 1이 포함된 글을 검색
+		Page<Object[]> result = boardRepo.searchPage("t", "1", pageable);
+	}
 }
 
 

@@ -46,6 +46,7 @@ public class BoardServiceImpl implements BoardService{
 		return new PageResultDto<>(result, fn);
 	}
 
+	//게시글 상세 보기
 	@Override
 	public BoardDto get(Long bno) {
 		Object result = boardRepo.getBoardByBno(bno);

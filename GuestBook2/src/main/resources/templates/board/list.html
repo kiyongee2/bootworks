@@ -6,6 +6,119 @@
 	<meta charset="UTF-8">
 	
 	<div layout:fragment="content" class="content">
-		<h2>게시물 목록</h2>
+		<h1>게시글 목록</h1>
+		<!-- 검색 폼 -->
+		
+		<!-- 검색 폼 끝 -->
+		<table class="table table-striped my-4">
+			<thead>
+				<tr>
+					<th>#</th><th>Title</th><th>Writer</th><th>Regdate</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dto : ${result.dtoList}">
+					<td>[[${dto.bno}]]</td>
+					<td>
+						<a th:href="@{/board/read(bno=${dto.bno}, 
+							page=${result.page}, type=${pageRequestDto.type},
+							keyword=${pageRequestDto.keyword})}">[[${dto.title}]]</a>
+						------- [<b th:text="${dto.replyCount}"></b>]
+					</td>
+					<td>[[${dto.writerName}]]<small>([[${dto.writerEmail}]])</small></td>
+					<td>[[${dto.regDate}]]</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 페이지 처리 시작 -->
+		<ul class="pagination justify-content-center align-items-center">
+			<!-- previous -->
+			<li class="page-item" th:if="${result.prev}">
+				<a th:href="@{/board/list(page=${result.start-1},
+								type=${pageRequestDto.type},
+								keyword=${pageRequestDto.keyword})}" 
+					class="page-link">Previous</a>
+			</li>
+			
+			<!-- 현재 페이지  -->
+			<li th:class="'page-item ' + ${result.page == page ? 'active' : ''}" 
+				th:each="page : ${result.pageList}">
+				<a th:href="@{/board/list(page=${page}, 
+								type=${pageRequestDto.type},
+								keyword=${pageRequestDto.keyword})}" class="page-link">
+					[[${page}]]
+				</a>
+			</li>
+			
+			<!-- next -->
+			<li class="page-item" th:if="${result.next}">
+				<a th:href="@{/board/list(page=${result.end+1},
+								type=${pageRequestDto.type},
+								keyword=${pageRequestDto.keyword})}" 
+					class="page-link">Next</a>
+			</li>
+		</ul>
+		<!-- 페이지 처리 끝-->
+		<div align="right">
+			<a th:href="@{/board/register}" class="btn btn-primary">글쓰기</a>
+		</div>
+		<!-- 모달 창 -->
+		<div class="modal" tabindex="-1">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Modal title</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p>게시글이 등록되었습니다.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- 모달 창 끝 -->
+		
+		<!-- 자바 스크립트 영역 -->
+		<script th:inline="javascript">
+			$(document).ready(function(){
+				let msg = [[${msg}]]
+				
+				//gno(글번호)가 있으면 모달 창이 열림
+				if(msg){
+					$(".modal").modal('show');
+				}
+				
+				//검색 폼 전송
+				let searchForm = $("#searchForm");
+				
+				$(".btn-search").click(function(){
+					searchForm.submit();
+				});
+				
+				//글 등록시 번호 출력
+				checkModal(msg);  
+				
+				function checkModal(msg){
+					if(parseInt(msg) > 0){
+						$(".modal-body").html("게시글 " + parseInt(msg) + "번이 등록되었습니다.");
+					}
+				}
+				
+				//모달 창 닫기
+				$(".close").click(function(){
+					$(".modal").modal('hide');
+				});
+			});
+		
+		</script>
+		
 	</div>
 </html>
+
+
+
+
+
