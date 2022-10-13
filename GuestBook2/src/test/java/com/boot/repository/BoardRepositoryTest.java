@@ -95,7 +95,8 @@ public class BoardRepositoryTest {
 	@Test
 	public void testSearchPage() {
 		Pageable pageable = 
-				PageRequest.of(0, 10, Sort.by("bno").descending());
+				PageRequest.of(0, 10, Sort.by("bno").descending()
+								          .and(Sort.by("title").ascending()));
 		
 		//제목에 1이 포함된 글을 검색
 		Page<Object[]> result = boardRepo.searchPage("t", "1", pageable);

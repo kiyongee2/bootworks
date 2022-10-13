@@ -1,9 +1,12 @@
 package com.boot.repository.search;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import com.boot.entity.Board;
@@ -12,7 +15,10 @@ import com.boot.entity.QMember;
 import com.boot.entity.QReply;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Order;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPQLQuery;
 
 import lombok.extern.log4j.Log4j2;
@@ -93,16 +99,33 @@ implements SearchBoardRepository{
 			//bno > 0 and 검색 조건
 			booleanBuilder.and(conditonBuiler);
 		}//if 끝
-		
 		tuple.where(booleanBuilder);
 		
 		//정렬 처리 추가(Order by)
+		Sort sort = pageable.getSort();
+		sort.stream().forEach(order -> {
+			Order direction = order.isAscending() ? Order.ASC : Order.DESC;
+			String prop = order.getProperty();
+			
+			PathBuilder orderByExpression = new PathBuilder(Board.class, "board");
+			tuple.orderBy(new OrderSpecifier<>(direction, orderByExpression.get(prop)));
+			
+		}); //sort 끝
+		tuple.groupBy(board);
 		
-		//tuple.groupBy(board);
-		//List<Tuple> result = tuple.fetch();
+		//Page 처리
+		tuple.offset(pageable.getOffset());  //인덱스
+		tuple.limit(pageable.getPageSize()); //페이지당 개수
 		
-		//log.info(result);
+		List<Tuple> result = tuple.fetch();
+		log.info(result);
+		
+		long count = tuple.fetchCount();
+		log.info("count: " + count);
 	
-		return null;
+		return new PageImpl<Object[]>(
+				result.stream().map(t -> t.toArray()).collect(Collectors.toList()),
+				pageable, 
+				count);
 	}
 }
