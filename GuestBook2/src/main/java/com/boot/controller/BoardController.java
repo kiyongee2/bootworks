@@ -25,8 +25,8 @@ public class BoardController {
 	//게시글 목록 보기
 	@GetMapping("/list")
 	public String list(PageRequestDto pageRequestDto, Model model) {
-		PageResultDto<BoardDto, Object[]> result = boardService.getList(pageRequestDto);
-		model.addAttribute("result", result);
+		//PageResultDto<BoardDto, Object[]> result = boardService.getList(pageRequestDto);
+		model.addAttribute("result", boardService.getList(pageRequestDto));
 		return "board/list";
 	}
 	

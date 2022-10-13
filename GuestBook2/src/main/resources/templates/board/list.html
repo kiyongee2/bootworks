@@ -8,7 +8,27 @@
 	<div layout:fragment="content" class="content">
 		<h1>게시글 목록</h1>
 		<!-- 검색 폼 -->
-		
+		<form th:action="@{/board/list}" method="get" class="mt-4" 
+			  id="searchForm">
+			<div class="input-group">
+				<input type="hidden" name="page" value="1">
+				<div class="input-group-prepend">
+					<select name="type" class="custom-select">
+						<option th:selected="${pageRequestDto.type==null}">------------</option> 
+						<option th:value="t" th:selected="${pageRequestDto.type=='t'}">제목</option>
+						<option th:value="c" th:selected="${pageRequestDto.type=='c'}">내용</option>
+						<option th:value="w" th:selected="${pageRequestDto.type=='w'}">작성자</option>
+						<option th:value="tc" th:selected="${pageRequestDto.type=='tc'}">제목+내용</option>
+						<option th:value="tcw" th:selected="${pageRequestDto.type=='tcw'}">제목+내용+작성자</option>
+					</select>
+				</div>
+				<input type="text" name="keyword" class="form-control"
+				       th:value="${pageRequestDto.keyword}">
+				<div class="input-group-prepend">
+					<button type="button" class="btn btn-outline-secondary btn-search" >검색</button>
+				</div>
+			</div>
+		</form>
 		<!-- 검색 폼 끝 -->
 		<table class="table table-striped my-4">
 			<thead>

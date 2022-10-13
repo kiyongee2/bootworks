@@ -71,8 +71,7 @@ implements SearchBoardRepository{
 		jpqlQuery.leftJoin(member).on(board.writer.eq(member));
 		jpqlQuery.leftJoin(reply).on(reply.board.eq(board));
 		
-		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, 
-				member.email, reply.count());
+		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member, reply.count());
 		
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		BooleanExpression expression = board.bno.gt(0L);
