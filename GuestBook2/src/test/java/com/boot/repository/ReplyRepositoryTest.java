@@ -1,5 +1,6 @@
 package com.boot.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -37,7 +38,7 @@ public class ReplyRepositoryTest {
 	}*/
 	
 	//댓글 조회
-	@Transactional  //지연 로딩 시 사용함
+	/*@Transactional  //지연 로딩 시 사용함
 	@Test
 	public void readReply() {
 		Optional<Reply> result = replyRepo.findById(1L);
@@ -46,6 +47,17 @@ public class ReplyRepositoryTest {
 		
 		System.out.println(reply);
 		System.out.println(reply.getBoard());
+	}*/
+	
+	//댓글 목록
+	@Test
+	public void testListByBoard() {
+		//100번 게시글 생성
+		Board board = Board.builder().bno(100L).build();
+		
+		List<Reply> replyList = replyRepo.getRepliesByBoardOrderByRno(board);
+		
+		replyList.forEach(reply -> System.out.println(reply));
 	}
 }
 
