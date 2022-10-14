@@ -17,12 +17,18 @@ import com.boot.dto.PageResultDto;
 import com.boot.entity.Board;
 import com.boot.entity.Member;
 import com.boot.repository.BoardRepository;
+import com.boot.repository.ReplyRepository;
+
 
 @Service
 public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	private BoardRepository boardRepo;
+	
+	@Autowired
+	private ReplyRepository replyRepo;
+	
 
 	//게시글 등록
 	@Override
@@ -60,8 +66,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	//게시글 삭제
+	@Transactional
 	@Override
 	public void remove(Long bno) {
+		//댓글 먼저 삭제
+		replyRepo.deleteByBno(bno);
+		
+		//게시물 삭제
 		boardRepo.deleteById(bno);
 	}
 
