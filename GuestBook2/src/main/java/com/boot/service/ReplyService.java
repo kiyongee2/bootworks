@@ -14,6 +14,12 @@ public interface ReplyService {
 	//댓글 등록
 	Long register(ReplyDto replyDto);
 	
+	//댓글 삭제
+	void remove(Long rno);
+	
+	//댓글 수정
+	void modify(ReplyDto replyDto);
+	
 	//Reply 객체(엔티티)를 ReplyDto로 반환
 	default ReplyDto entityToDto(Reply reply) {
 		ReplyDto dto = ReplyDto.builder()

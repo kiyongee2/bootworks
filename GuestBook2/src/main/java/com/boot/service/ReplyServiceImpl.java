@@ -38,4 +38,16 @@ public class ReplyServiceImpl implements ReplyService{
 		return reply.getRno();
 	}
 
+	//댓글 삭제
+	@Override
+	public void remove(Long rno) {
+		replyRepo.deleteById(rno);
+	}
+
+	//댓글 수정
+	@Override
+	public void modify(ReplyDto replyDto) {
+		Reply reply = dtoToEntity(replyDto);
+		replyRepo.save(reply);
+	}
 }
