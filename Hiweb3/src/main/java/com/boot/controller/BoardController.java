@@ -57,9 +57,11 @@ public class BoardController {
 	
 	//글쓰기 처리
 	@PostMapping("/register")
-	public String register(BoardDto boardDto, 
+	public String register(BoardDto boardDto,
+			@AuthenticationPrincipal SecurityUser principal,
 			RedirectAttributes redirectAttributes) {
 		
+		boardDto.setWriterUserid(principal.getUsername());
 		Long bno = boardService.register(boardDto);
 		redirectAttributes.addFlashAttribute("msg", bno);
 		return "redirect:list";
