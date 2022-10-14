@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+	  
+	<meta charset="UTF-8">
+	
+	<div layout:fragment="content" class="content">
+		<h2>게시글 상세 보기</h2>
+		<form th:action="@{/board/updateBoard}" method="post" class="my-4">
+		  <input type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}">
+		  <input type="hidden" name="seq" th:value="${board.seq}">
+		  <div class="form-group row">
+		  	<label class="col-sm-2">제목</label>
+		    <div class="col-sm-3">
+		    	<input type="text" name="title" class="form-control"
+		    	       th:value="${board.title}">
+		    </div>
+	      </div>
+	      <div class="form-group row">
+		  	<label class="col-sm-2">작성자</label>
+		    <div class="col-sm-3">
+		    	<span th:text="${board.member.name}"></span>
+		    </div>
+		  </div>
+	      <div class="form-group row">
+		  	<label class="col-sm-2">내용</label>
+		    <div class="col-sm-7">
+		    	<textarea name="content" rows="6" cols="50" 
+		    		class="form-control">[[${board.content}]]</textarea>
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		  	<label class="col-sm-2">작성일</label>
+		    <div class="col-sm-3">
+		    	<span th:text="${#temporals.format(board.createDate, 
+		    	     'yyyy-MM-dd HH:mm:ss')}"></span>
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		  	<label class="col-sm-2">조회수</label>
+		    <div class="col-sm-3">
+		    	<span th:text="${board.cnt}"></span>
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		  	<div class="col-sm-3">
+		  	<th:block th:if="${#authentication.getPrincipal().getUsername() 
+		  					eq board.member.userid}">
+		  		<button type="submit" class="btn btn-success">수정</button>
+		  		<a th:href="@{/board/deleteBoard(seq=${board.seq})}"
+		  		   th:onclick="return confirm('정말로 삭제하시겠습니까?')"
+		  		   class="btn btn-danger">삭제</a>
+		    </th:block>
+		  		<a th:href="@{/board/getBoardList}" class="btn btn-primary">목록</a>
+		  	</div>
+		  </div>
+		</form>
+		<!-- <span>[[${#authentication}]]</span> -->
+	</div>
+</html>
