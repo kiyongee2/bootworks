@@ -50,12 +50,19 @@ public class BoardServiceImpl implements BoardService{
 		return new PageResultDto<>(result, fn);
 	}
 
+	//게시글 상세 보기
 	@Override
 	public BoardDto get(Long bno) {
 		Object result = boardRepo.getBoardByBno(bno);
 		Object[] arr = (Object[]) result;
 		return entityToDto((Board)arr[0],
 				(Member)arr[1], (Long)arr[2]);
+	}
+
+	//게시글 삭제
+	@Override
+	public void remove(Long bno) {
+		boardRepo.deleteById(bno);
 	}
 
 	

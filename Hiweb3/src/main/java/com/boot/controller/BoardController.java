@@ -66,6 +66,13 @@ public class BoardController {
 		redirectAttributes.addFlashAttribute("msg", bno);
 		return "redirect:list";
 	}
+	
+	//글 삭제
+	@GetMapping("/delete")
+	public String delet(Long bno) {
+		boardService.remove(bno);
+		return "redirect:list";
+	}
 
 	//게시글 목록 보기 
 	/*@GetMapping("/getBoardList")
