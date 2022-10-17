@@ -39,6 +39,7 @@ public class BoardServiceImpl implements BoardService{
 		return board.getBno();
 	}
 
+	//게시글 목록
 	@Override
 	public PageResultDto<BoardDto, Object[]> getList(PageRequestDto pageRequestDto) {
 		//entityToDto 호출
@@ -76,6 +77,22 @@ public class BoardServiceImpl implements BoardService{
 		boardRepo.deleteById(bno);
 	}
 
-	
+	//조회수
+	@Transactional  //트랜잭션 - 조회와 상세보기 작업 일괄 처리
+	@Override
+	public void updateCount(Long bno) {
+		boardRepo.updateCount(bno);
+	}
 
+	@Override
+	public void modify(BoardDto dto) {
+		//수정할 게시글 가져오기
+		Board board = boardRepo.findById(dto.getBno()).get();
+		//게시글 수정
+		board.changeTitle(dto.getTitle());
+		board.changeContent(dto.getContent());
+		
+		//수정 저장
+		boardRepo.save(board);
+	}
 }

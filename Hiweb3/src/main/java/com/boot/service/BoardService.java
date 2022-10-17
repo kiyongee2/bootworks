@@ -19,8 +19,14 @@ public interface BoardService {
 	//게시글 상세 보기
 	BoardDto get(Long bno);
 	
+	//조회수
+	void updateCount(Long bno);
+	
 	//게시글 삭제
 	void remove(Long bno);
+	
+	//게시글 수정
+	void modify(BoardDto dto);
 		
 	//dto에서 Entity로 변환
 	default Board dtoToEntity(BoardDto dto) {

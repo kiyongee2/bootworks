@@ -46,7 +46,9 @@ public class BoardController {
 	@GetMapping("/read")
 	public void read(@ModelAttribute("requestDto") PageRequestDto requestDto
 			, Long bno, Model model) {
-		
+		//조회수 증가
+		boardService.updateCount(bno);
+		//게시글 보기
 		BoardDto boardDto = boardService.get(bno);
 		model.addAttribute("dto", boardDto);
 	}
@@ -71,6 +73,13 @@ public class BoardController {
 	@GetMapping("/delete")
 	public String delet(Long bno) {
 		boardService.remove(bno);
+		return "redirect:list";
+	}
+	
+	//게시글 수정
+	@PostMapping("/update")
+	public String modify(BoardDto boardDto) {
+		boardService.modify(boardDto);
 		return "redirect:list";
 	}
 

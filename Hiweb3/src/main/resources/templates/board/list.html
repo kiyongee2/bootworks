@@ -46,8 +46,8 @@
 						------- [<b th:text="${dto.replyCount}"></b>]
 					</td>
 					<td>[[${dto.writerName}]]<small>([[${dto.writerUserid}]])</small></td>
-					<td>[[${dto.regDate}]]</td>
-					<td>[[${dto.cnt}]]</td>
+					<td th:text="${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td th:text="${dto.cnt}"></td>
 				</tr>
 			</tbody>
 		</table>

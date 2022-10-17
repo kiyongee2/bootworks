@@ -42,4 +42,14 @@ public class Board extends BaseEntity{
 	//다대일 연관 매핑
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member writer;
+	
+	//글 제목 수정
+	public void changeTitle(String title) {
+		this.title = title;
+	}
+	
+	//글 내용 수정
+	public void changeContent(String content) {
+		this.content = content;
+	}
 }
