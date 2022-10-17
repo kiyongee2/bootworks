@@ -48,4 +48,11 @@ public class MemberServiceImpl implements MemberService{
 	public void delete(Member member) {
 		memberRepo.delete(member);
 	}
+
+	//ID 중복 확인
+	@Override
+	public int checkID(String userid) {
+		int value = memberRepo.checkID(userid);
+		return value;
+	}
 }

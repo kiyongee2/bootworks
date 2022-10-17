@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.boot.entity.Member;
 import com.boot.service.MemberService;
@@ -44,6 +45,14 @@ public class MemberController {
 		return "member/result";
 	}
 	
+	//ID 중복 확인
+	@GetMapping("/checkID")
+	@ResponseBody
+	public int checkID(String userid) {
+		int value = memberService.checkID(userid);
+		return value;
+	}
+	
 	//회원 정보 보기
 	@GetMapping("/view")
 	public String view(String userid, Model model) {
@@ -60,12 +69,14 @@ public class MemberController {
 		return "member/result";
 	}
 	
+	//회원 삭제
 	@GetMapping("/delete")
 	public String delete(Member member, Model model) {
 		memberService.delete(member);
 		model.addAttribute("msg", "삭제");
 		return "member/result";
 	}
+	
 }
 
 

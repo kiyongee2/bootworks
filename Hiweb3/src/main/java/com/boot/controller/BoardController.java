@@ -61,8 +61,24 @@ public class BoardController {
 	@PostMapping("/register")
 	public String register(BoardDto boardDto,
 			@AuthenticationPrincipal SecurityUser principal,
-			RedirectAttributes redirectAttributes) {
+			@RequestParam MultipartFile[] uploadFile,
+			RedirectAttributes redirectAttributes) throws IllegalStateException, IOException {
+		//파일 업로드
+		//MultipartFile[]를 파라미터로 객체 사용
+		for(MultipartFile file : uploadFile) {
+			if(!file.isEmpty()) {
+				//FileDto 객체 생성
+				FileDto dto = new FileDto(UUID.randomUUID().toString(),
+						file.getOriginalFilename(), file.getContentType());
+				
+				//파일 생성 - File 클래스의 객체는 논리적인 파일 이름임
+				File newFileName = new File(dto.getUuid() + "_" + dto.getFileName());
+				//실제 물리적인 파일로 전달해서 저장
+				file.transferTo(newFileName);
+			}
+		}
 		
+		//글쓰기
 		boardDto.setWriterUserid(principal.getUsername());
 		Long bno = boardService.register(boardDto);
 		redirectAttributes.addFlashAttribute("msg", bno);
